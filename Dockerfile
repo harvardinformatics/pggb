@@ -46,8 +46,8 @@ RUN git clone --recursive https://github.com/waveygang/wfmash \
     && git pull \
     && git checkout 2aaba270406b3088bca2a5ed61f2c8105db25c72 \
     && git submodule update --init --recursive \
-    && sed -i 's/-march=native/-march=sandybridge/g' src/common/wflign/deps/WFA2-lib/Makefile \
-    && cmake -H. -DCMAKE_BUILD_TYPE=Generic -DEXTRA_FLAGS='-march=sandybridge -Ofast' -Bbuild && cmake --build build -- -j $(nproc) \
+    && sed -i 's/-march=native/-march=skylake/g' src/common/wflign/deps/WFA2-lib/Makefile \
+    && cmake -H. -DCMAKE_BUILD_TYPE=Generic -DEXTRA_FLAGS='-march=skylake -Ofast' -Bbuild && cmake --build build -- -j $(nproc) \
     && cp build/bin/wfmash /usr/local/bin/wfmash \
     && cd ../ \
     && rm -rf wfmash
@@ -57,7 +57,7 @@ RUN git clone --recursive https://github.com/ekg/seqwish \
     && git pull \
     && git checkout f362f6f5ea89dbb6a0072a8b8ba215e663301d33 \
     && git submodule update --init --recursive \
-    && cmake -H. -DCMAKE_BUILD_TYPE=Generic -DEXTRA_FLAGS='-march=sandybridge -Ofast' -Bbuild && cmake --build build -- -j $(nproc) \
+    && cmake -H. -DCMAKE_BUILD_TYPE=Generic -DEXTRA_FLAGS='-march=skylake -Ofast' -Bbuild && cmake --build build -- -j $(nproc) \
     && cp bin/seqwish /usr/local/bin/seqwish \
     && cd ../ \
     && rm -rf seqwish
@@ -67,10 +67,10 @@ RUN git clone --recursive https://github.com/pangenome/smoothxg \
     && git pull \
     && git checkout c12f2d2685e566fe04868fd4749e544eb5a6bc37 \
     && git submodule update --init --recursive \
-    && sed -i 's/-msse4.1/-march=sandybridge -Ofast/g' deps/spoa/CMakeLists.txt \
-    && sed -i 's/-march=native/-march=sandybridge -Ofast/g' deps/spoa/CMakeLists.txt \
-    && sed -i 's/-march=native/-march=sandybridge -Ofast/g' deps/abPOA/CMakeLists.txt \
-    && cmake -H. -DCMAKE_BUILD_TYPE=Generic -DEXTRA_FLAGS='-march=sandybridge -Ofast' -Bbuild && cmake --build build -- -j $(nproc) \
+    && sed -i 's/-msse4.1/-march=skylake -Ofast/g' deps/spoa/CMakeLists.txt \
+    && sed -i 's/-march=native/-march=skylake -Ofast/g' deps/spoa/CMakeLists.txt \
+    && sed -i 's/-march=native/-march=skylake -Ofast/g' deps/abPOA/CMakeLists.txt \
+    && cmake -H. -DCMAKE_BUILD_TYPE=Generic -DEXTRA_FLAGS='-march=skylake -Ofast' -Bbuild && cmake --build build -- -j $(nproc) \
     && cp bin/smoothxg /usr/local/bin/smoothxg \
     && cp deps/odgi/bin/odgi /usr/local/bin/odgi \
     && cd ../ \
